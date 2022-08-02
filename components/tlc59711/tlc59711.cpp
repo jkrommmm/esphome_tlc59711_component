@@ -52,9 +52,9 @@ void TLC59711::loop() {
   // push the data out, MSB first, 16 bit word per channel, 12 channels per chip
   for (int32_t ch = N_CHANNELS_PER_CHIP * num_chips_ - 1; ch >= 0; ch--) {
     uint16_t word = pwm_amounts_[ch];
-    for (uint8_t bit = 0; bit < 12; bit++) {
+    for (uint8_t bit = 0; bit < 16; bit++) {
       this->clock_pin_->digital_write(false);
-      this->data_pin_->digital_write(word & 0x800);
+      this->data_pin_->digital_write(word & 0x8000);
       word <<= 1;
 
       this->clock_pin_->digital_write(true);

@@ -12,7 +12,6 @@ from esphome.const import (
 )
 
 AUTO_LOAD = ["output"]
-CODEOWNERS = ["@rnauber"]
 
 tlc59711_ns = cg.esphome_ns.namespace("tlc59711")
 TLC59711 = tlc59711_ns.class_("TLC59711", cg.Component)
@@ -34,7 +33,7 @@ async def to_code(config):
 
     data = await cg.gpio_pin_expression(config[CONF_DATA_PIN])
     cg.add(var.set_data_pin(data))
-    
+
     clock = await cg.gpio_pin_expression(config[CONF_CLOCK_PIN])
     cg.add(var.set_clock_pin(clock))
 
