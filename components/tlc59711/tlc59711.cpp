@@ -40,14 +40,14 @@ void TLC59711::loop() {
   command <<= 7;
   command |= 0x7F;
 
-  for (uint8_t bitIndex = 32; bitIndex >= 0; bitIndex--) {
-    this->clock_pin_->digital_write(false);
-    this->data_pin_->digital_write(command & 0x80000000);
-    command <<= 1;
-
-    this->clock_pin_->digital_write(true);
-    this->clock_pin_->digital_write(true);  // TWH0>12ns, so we should be fine using this as delay
-  }
+  //for (uint8_t bitIndex = 32; bitIndex >= 0; bitIndex--) {
+  //  this->clock_pin_->digital_write(false);
+  //  this->data_pin_->digital_write(command & 0x80000000);
+  //  command <<= 1;
+  //
+  //  this->clock_pin_->digital_write(true);
+  //  this->clock_pin_->digital_write(true);  // TWH0>12ns, so we should be fine using this as delay
+  //}
 
   // push the data out, MSB first, 16 bit word per channel, 12 channels per chip
   for (int32_t ch = N_CHANNELS_PER_CHIP * num_chips_ - 1; ch >= 0; ch--) {
